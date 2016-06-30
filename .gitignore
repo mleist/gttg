@@ -65,3 +65,8 @@ tests/.hitch
 # MailHog binary
 mailhog
 
+.cache
+staticfiles
+docs/*.py~
+docs/_build
+set_env.sh

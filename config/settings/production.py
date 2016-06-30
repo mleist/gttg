@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+# pylint: disable=W0614,W0401
+# flake8: noqa
 """
 Production Configurations
 
@@ -12,14 +14,13 @@ Production Configurations
 
 """
 from __future__ import absolute_import, unicode_literals
-
-from boto.s3.connection import OrdinaryCallingFormat
-from django.utils import six
-
 import logging
 
+# from boto.s3.connection import OrdinaryCallingFormat
+from django.utils import six
 
-from .common import *  # noqa
+
+from config.settings.common import *  # noqa
 
 # SECRET CONFIGURATION
 # ------------------------------------------------------------------------------
@@ -39,14 +40,16 @@ INSTALLED_APPS += ('raven.contrib.django.raven_compat', )
 # See: https://whitenoise.readthedocs.io/
 WHITENOISE_MIDDLEWARE = ('whitenoise.middleware.WhiteNoiseMiddleware', )
 MIDDLEWARE_CLASSES = WHITENOISE_MIDDLEWARE + MIDDLEWARE_CLASSES
-RAVEN_MIDDLEWARE = ('raven.contrib.django.raven_compat.middleware.SentryResponseErrorIdMiddleware', )
+RAVEN_MIDDLEWARE = (
+    'raven.contrib.django.raven_compat.middleware.SentryResponseErrorIdMiddleware', )
 MIDDLEWARE_CLASSES = RAVEN_MIDDLEWARE + MIDDLEWARE_CLASSES
 
 
 # SECURITY CONFIGURATION
 # ------------------------------------------------------------------------------
 # See https://docs.djangoproject.com/en/1.9/ref/middleware/#module-django.middleware.security
-# and https://docs.djangoproject.com/ja/1.9/howto/deployment/checklist/#run-manage-py-check-deploy
+# and
+# https://docs.djangoproject.com/ja/1.9/howto/deployment/checklist/#run-manage-py-check-deploy
 
 # set this to 60 seconds and then to 518400 when you can prove it works
 SECURE_HSTS_SECONDS = 60
@@ -81,12 +84,12 @@ INSTALLED_APPS += (
     'storages',
 )
 
-AWS_ACCESS_KEY_ID = env('DJANGO_AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = env('DJANGO_AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = env('DJANGO_AWS_STORAGE_BUCKET_NAME')
-AWS_AUTO_CREATE_BUCKET = True
-AWS_QUERYSTRING_AUTH = False
-AWS_S3_CALLING_FORMAT = OrdinaryCallingFormat()
+# AWS_ACCESS_KEY_ID = env('DJANGO_AWS_ACCESS_KEY_ID')
+# AWS_SECRET_ACCESS_KEY = env('DJANGO_AWS_SECRET_ACCESS_KEY')
+# AWS_STORAGE_BUCKET_NAME = env('DJANGO_AWS_STORAGE_BUCKET_NAME')
+# AWS_AUTO_CREATE_BUCKET = True
+# AWS_QUERYSTRING_AUTH = False
+# AWS_S3_CALLING_FORMAT = OrdinaryCallingFormat()
 
 # AWS cache settings, don't change unless you know what you're doing:
 AWS_EXPIRY = 60 * 60 * 24 * 7
@@ -101,7 +104,7 @@ AWS_HEADERS = {
 
 # URL that handles the media served from MEDIA_ROOT, used for managing
 # stored files.
-MEDIA_URL = 'https://s3.amazonaws.com/%s/' % AWS_STORAGE_BUCKET_NAME
+# MEDIA_URL = 'https://s3.amazonaws.com/%s/' % AWS_STORAGE_BUCKET_NAME
 
 
 # Static Assets
@@ -155,7 +158,8 @@ CACHES = {
 
 # Sentry Configuration
 SENTRY_DSN = env('DJANGO_SENTRY_DSN')
-SENTRY_CLIENT = env('DJANGO_SENTRY_CLIENT', default='raven.contrib.django.raven_compat.DjangoClient')
+SENTRY_CLIENT = env('DJANGO_SENTRY_CLIENT',
+                    default='raven.contrib.django.raven_compat.DjangoClient')
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': True,

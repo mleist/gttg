@@ -1,0 +1,31 @@
+@startuml
+
+class gttg {
+ +start_time
+ +topic_list
+ +audience_set
+}
+
+class topic {
+ +title
+ +para_list
+}
+
+class audience {
+ +title
+ +para_list
+}
+
+class para {
+ +text
+}
+
+
+gttg "1" *-- "1..*" topic
+gttg "1" *-- "1..*" audience
+
+topic "1" *-- "0..*" para
+audience "1" *-- "0..*" para
+
+
+@enduml

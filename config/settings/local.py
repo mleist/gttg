@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+# pylint: disable=W0614,W0401
+# flake8: noqa
 """
 Local settings
 
@@ -8,7 +10,7 @@ Local settings
 - Add django-extensions as app
 """
 
-from .common import *  # noqa
+from config.settings.common import *  # noqa
 
 # DEBUG
 # ------------------------------------------------------------------------------
@@ -19,7 +21,8 @@ TEMPLATES[0]['OPTIONS']['debug'] = DEBUG
 # ------------------------------------------------------------------------------
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
 # Note: This key only used for development and testing.
-SECRET_KEY = env('DJANGO_SECRET_KEY', default='+-x3a(-jfan3p3zb86z+f#2%^cz8dk9zkr!7cuz5m_cl6jif8f')
+SECRET_KEY = env('DJANGO_SECRET_KEY',
+                 default='+-x3a(-jfan3p3zb86z+f#2%^cz8dk9zkr!7cuz5m_cl6jif8f')
 
 # Mail settings
 # ------------------------------------------------------------------------------
@@ -42,8 +45,8 @@ CACHES = {
 
 # django-debug-toolbar
 # ------------------------------------------------------------------------------
-MIDDLEWARE_CLASSES += ('debug_toolbar.middleware.DebugToolbarMiddleware',)
-INSTALLED_APPS += ('debug_toolbar', )
+# MIDDLEWARE_CLASSES += ('debug_toolbar.middleware.DebugToolbarMiddleware',)
+# INSTALLED_APPS += ('debug_toolbar')
 
 INTERNAL_IPS = ('127.0.0.1', '10.0.2.2',)
 
@@ -61,10 +64,10 @@ INSTALLED_APPS += ('django_extensions', )
 # TESTING
 # ------------------------------------------------------------------------------
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
-
-########## CELERY
-# In development, all tasks will be executed locally by blocking until the task returns
+# CELERY
+# In development, all tasks will be executed locally by blocking until the
+# task returns
 CELERY_ALWAYS_EAGER = True
-########## END CELERY
+# END CELERY
 
 # Your local stuff: Below this line define 3rd party library settings
