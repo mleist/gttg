@@ -42,7 +42,13 @@ THIRD_PARTY_APPS = (
     'allauth.socialaccount',  # registration
     'ckeditor',
     'django_object_actions',
+    'dbbackup',  # django-dbbackup
 )
+
+DBBACKUP_STORAGE = 'dbbackup.storage.filesystem_storage'
+DBBACKUP_STORAGE_OPTIONS = {'location': './backups'}
+
+
 
 # Apps specific for this project go here.
 LOCAL_APPS = (
