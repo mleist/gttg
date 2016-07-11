@@ -26,3 +26,4 @@ raven==5.20.0
 
 # User
 django-dbbackup
+uWSGI
