@@ -43,11 +43,12 @@ THIRD_PARTY_APPS = (
     'ckeditor',
     'django_object_actions',
     'dbbackup',  # django-dbbackup
+    'rest_framework',
+    'rest_framework_swagger',
 )
 
 DBBACKUP_STORAGE = 'dbbackup.storage.filesystem_storage'
 DBBACKUP_STORAGE_OPTIONS = {'location': './backups'}
-
 
 
 # Apps specific for this project go here.
@@ -84,6 +85,20 @@ MIGRATION_MODULES = {
 # ------------------------------------------------------------------------------
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#debug
 DEBUG = env.bool('DJANGO_DEBUG', False)
+
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',),
+    'PAGE_SIZE': 10,
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    }
+#IsAdminUser
+#DjangoModelPermissionsOrAnonReadOnly
+
+
+
 
 # FIXTURE CONFIGURATION
 # ------------------------------------------------------------------------------
