@@ -9,25 +9,25 @@ class GttgSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Gttg
-        fields = ('title', 'subtitle', 'start_time')
+        fields = ('pk', 'url', 'title', 'subtitle', 'start_time')
 
 
 class IntroSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Intro
-        fields = ('title', 'content', 'gttg')
+        fields = ('pk', 'url', 'title', 'content', 'gttg')
 
 
 class TopicSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Topic
-        fields = ('title', 'content', 'gttg')
+        fields = ('pk', 'url', 'title', 'content', 'gttg')
 
 
 class AudienceSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Audience
-        fields = ('title', 'content', 'gttg')
+        fields = ('pk', 'url', 'title', 'content', 'gttg')
