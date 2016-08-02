@@ -17,7 +17,7 @@ router.register(r'topics', TopicViewSet)
 router.register(r'audiences', AudienceViewSet)
 
 urlpatterns = [
-    url(r'^rest/', schema_view),
+    url(r'^swagger/', schema_view),
     url(r'^', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^base/', include('base.urls')),

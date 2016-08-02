@@ -4,11 +4,13 @@
 # from django.shortcuts import render
 from django.http import HttpResponse
 from rest_framework.decorators import api_view, renderer_classes
-from rest_framework import viewsets
+from rest_framework.decorators import permission_classes
+from rest_framework import viewsets, permissions
 from rest_framework import response, schemas
 from rest_framework_swagger.renderers import OpenAPIRenderer, SwaggerUIRenderer
 from base.models import Gttg, Intro, Topic, Audience
-from base.serializers import GttgSerializer, IntroSerializer, TopicSerializer, AudienceSerializer
+from base.serializers import GttgSerializer, IntroSerializer
+from base.serializers import TopicSerializer, AudienceSerializer
 
 
 def index(request):
@@ -16,6 +18,7 @@ def index(request):
 
 
 @api_view()
+@permission_classes((permissions.AllowAny,))
 @renderer_classes([OpenAPIRenderer, SwaggerUIRenderer])
 def schema_view(request):
     generator = schemas.SchemaGenerator(title='GTTG API')
